@@ -252,15 +252,55 @@
     }
     .rating-text { font-size: 0.85rem; font-weight: 600; color: var(--primary); }
 
-    /* ── GALLERY / CAROUSEL ── */
+    /* ── GALLERY ── */
     #gallery { background: var(--bg); }
 
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+    }
+    .gallery-item:hover::after { background: rgba(0,0,0,0.1); }
+
+    /* ── CAROUSEL (mobile only) ── */
     .carousel {
+      display: none;
       position: relative;
       margin-top: 2.5rem;
       border-radius: var(--radius);
       overflow: hidden;
-      aspect-ratio: 16/9;
+      aspect-ratio: 4/3;
       background: #000;
       cursor: pointer;
     }
@@ -285,10 +325,10 @@
       background: rgba(0,0,0,0.45);
       color: #fff;
       border: none;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -298,18 +338,18 @@
       backdrop-filter: blur(4px);
     }
     .carousel-btn:hover { background: rgba(0,0,0,0.7); }
-    .carousel-btn.prev { left: 1rem; }
-    .carousel-btn.next { right: 1rem; }
+    .carousel-btn.prev { left: 0.7rem; }
+    .carousel-btn.next { right: 0.7rem; }
 
     .carousel-counter {
       position: absolute;
-      bottom: 1rem;
-      right: 1.2rem;
+      bottom: 0.8rem;
+      right: 1rem;
       background: rgba(0,0,0,0.5);
       color: #fff;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      padding: 0.3rem 0.8rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 100px;
       backdrop-filter: blur(4px);
     }
@@ -412,7 +452,8 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .about-layout, .location-layout { grid-template-columns: 1fr; gap: 2rem; }
-      .carousel { aspect-ratio: 4/3; }
+      .gallery-grid { display: none; }
+      .carousel { display: block; }
     }
   </style>
 </head>
@@ -531,6 +572,57 @@
   <div class="container">
     <p class="section-label">Fotografije</p>
     <h2 class="section-title">Galerija</h2>
+    <!-- Desktop grid -->
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox(0)"><img src="slike/559294267.jpg" alt="Apartman 1" /></div>
+      <div class="gallery-item" onclick="openLightbox(1)"><img src="slike/104582017.jpg" alt="Apartman 2" /></div>
+      <div class="gallery-item" onclick="openLightbox(2)"><img src="slike/211572618.jpg" alt="Apartman 3" /></div>
+      <div class="gallery-item" onclick="openLightbox(3)"><img src="slike/258946855.jpg" alt="Apartman 4" /></div>
+      <div class="gallery-item" onclick="openLightbox(4)"><img src="slike/258947263.jpg" alt="Apartman 5" /></div>
+      <div class="gallery-item" onclick="openLightbox(5)"><img src="slike/559294784.jpg" alt="Apartman 6" /></div>
+      <div class="gallery-item" onclick="openLightbox(6)"><img src="slike/87327634.jpg" alt="Apartman 7" /></div>
+      <div class="gallery-item" onclick="openLightbox(7)"><img src="slike/211572544.jpg" alt="Apartman 8" /></div>
+      <div class="gallery-item" onclick="openLightbox(8)"><img src="slike/127244530.jpg" alt="Apartman 9" /></div>
+      <div class="gallery-item" onclick="openLightbox(9)"><img src="slike/87081643.jpg" alt="Apartman 10" /></div>
+      <div class="gallery-item" onclick="openLightbox(10)"><img src="slike/258944116.jpg" alt="Apartman 11" /></div>
+      <div class="gallery-item" onclick="openLightbox(11)"><img src="slike/466099575.jpg" alt="Apartman 12" /></div>
+      <div class="gallery-item" onclick="openLightbox(12)"><img src="slike/87154579.jpg" alt="Apartman 13" /></div>
+      <div class="gallery-item" onclick="openLightbox(13)"><img src="slike/258947353.jpg" alt="Apartman 14" /></div>
+      <div class="gallery-item" onclick="openLightbox(14)"><img src="slike/208337408.jpg" alt="Apartman 15" /></div>
+      <div class="gallery-item" onclick="openLightbox(15)"><img src="slike/485177245.jpg" alt="Apartman 16" /></div>
+      <div class="gallery-item" onclick="openLightbox(16)"><img src="slike/485176513.jpg" alt="Apartman 17" /></div>
+      <div class="gallery-item" onclick="openLightbox(17)"><img src="slike/559307786.jpg" alt="Apartman 18" /></div>
+      <div class="gallery-item" onclick="openLightbox(18)"><img src="slike/485176658.jpg" alt="Apartman 19" /></div>
+      <div class="gallery-item" onclick="openLightbox(19)"><img src="slike/485176606.jpg" alt="Apartman 20" /></div>
+      <div class="gallery-item" onclick="openLightbox(20)"><img src="slike/258943656.jpg" alt="Apartman 21" /></div>
+      <div class="gallery-item" onclick="openLightbox(21)"><img src="slike/485176743.jpg" alt="Apartman 22" /></div>
+      <div class="gallery-item" onclick="openLightbox(22)"><img src="slike/366524119.jpg" alt="Apartman 23" /></div>
+      <div class="gallery-item" onclick="openLightbox(23)"><img src="slike/559295126.jpg" alt="Apartman 24" /></div>
+      <div class="gallery-item" onclick="openLightbox(24)"><img src="slike/559291066.jpg" alt="Apartman 25" /></div>
+      <div class="gallery-item" onclick="openLightbox(25)"><img src="slike/559290617.jpg" alt="Apartman 26" /></div>
+      <div class="gallery-item" onclick="openLightbox(26)"><img src="slike/559291720.jpg" alt="Apartman 27" /></div>
+      <div class="gallery-item" onclick="openLightbox(27)"><img src="slike/559355768.jpg" alt="Apartman 28" /></div>
+      <div class="gallery-item" onclick="openLightbox(28)"><img src="slike/465579644.jpg" alt="Apartman 29" /></div>
+      <div class="gallery-item" onclick="openLightbox(29)"><img src="slike/465579760.jpg" alt="Apartman 30" /></div>
+      <div class="gallery-item" onclick="openLightbox(30)"><img src="slike/258947100.jpg" alt="Apartman 31" /></div>
+      <div class="gallery-item" onclick="openLightbox(31)"><img src="slike/258942281.jpg" alt="Apartman 32" /></div>
+      <div class="gallery-item" onclick="openLightbox(32)"><img src="slike/258947015.jpg" alt="Apartman 33" /></div>
+      <div class="gallery-item" onclick="openLightbox(33)"><img src="slike/211572704.jpg" alt="Apartman 34" /></div>
+      <div class="gallery-item" onclick="openLightbox(34)"><img src="slike/258944320.jpg" alt="Apartman 35" /></div>
+      <div class="gallery-item" onclick="openLightbox(35)"><img src="slike/258943487.jpg" alt="Apartman 36" /></div>
+      <div class="gallery-item" onclick="openLightbox(36)"><img src="slike/258943750.jpg" alt="Apartman 37" /></div>
+      <div class="gallery-item" onclick="openLightbox(37)"><img src="slike/258944019.jpg" alt="Apartman 38" /></div>
+      <div class="gallery-item" onclick="openLightbox(38)"><img src="slike/104582046.jpg" alt="Apartman 39" /></div>
+      <div class="gallery-item" onclick="openLightbox(39)"><img src="slike/87152111.jpg" alt="Apartman 40" /></div>
+      <div class="gallery-item" onclick="openLightbox(40)"><img src="slike/104582078.jpg" alt="Apartman 41" /></div>
+      <div class="gallery-item" onclick="openLightbox(41)"><img src="slike/87152731.jpg" alt="Apartman 42" /></div>
+      <div class="gallery-item" onclick="openLightbox(42)"><img src="slike/559296045.jpg" alt="Apartman 43" /></div>
+      <div class="gallery-item" onclick="openLightbox(43)"><img src="slike/559294067.jpg" alt="Apartman 44" /></div>
+      <div class="gallery-item" onclick="openLightbox(44)"><img src="slike/559299250.jpg" alt="Apartman 45" /></div>
+      <div class="gallery-item" onclick="openLightbox(45)"><img src="slike/559295602.jpg" alt="Apartman 46" /></div>
+    </div>
+
+    <!-- Mobile carousel -->
     <div class="carousel" id="carousel" onclick="openLightbox(carouselIndex)">
       <div class="carousel-track" id="carouselTrack">
         <img src="slike/559294267.jpg" alt="Apartman 1" />
