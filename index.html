@@ -301,21 +301,15 @@
       border-radius: var(--radius);
       overflow: hidden;
       aspect-ratio: 4/3;
-      background: #000;
+      background: #111;
       cursor: pointer;
     }
 
-    .carousel-track {
-      display: flex;
-      height: 100%;
-      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
-    }
-
-    .carousel-track img {
-      min-width: 100%;
+    .carousel > img {
+      width: 100%;
       height: 100%;
       object-fit: cover;
-      flex-shrink: 0;
+      display: block;
     }
 
     .carousel-btn {
@@ -452,6 +446,7 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .about-layout, .location-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .about-img { display: none; }
       .gallery-grid { display: none; }
       .carousel { display: block; }
     }
@@ -624,54 +619,7 @@
 
     <!-- Mobile carousel -->
     <div class="carousel" id="carousel" onclick="openLightbox(carouselIndex)">
-      <div class="carousel-track" id="carouselTrack">
-        <img src="slike/559294267.jpg" alt="Apartman 1" />
-        <img src="slike/104582017.jpg" alt="Apartman 2" />
-        <img src="slike/211572618.jpg" alt="Apartman 3" />
-        <img src="slike/258946855.jpg" alt="Apartman 4" />
-        <img src="slike/258947263.jpg" alt="Apartman 5" />
-        <img src="slike/559294784.jpg" alt="Apartman 6" />
-        <img src="slike/87327634.jpg" alt="Apartman 7" />
-        <img src="slike/211572544.jpg" alt="Apartman 8" />
-        <img src="slike/127244530.jpg" alt="Apartman 9" />
-        <img src="slike/87081643.jpg" alt="Apartman 10" />
-        <img src="slike/258944116.jpg" alt="Apartman 11" />
-        <img src="slike/466099575.jpg" alt="Apartman 12" />
-        <img src="slike/87154579.jpg" alt="Apartman 13" />
-        <img src="slike/258947353.jpg" alt="Apartman 14" />
-        <img src="slike/208337408.jpg" alt="Apartman 15" />
-        <img src="slike/485177245.jpg" alt="Apartman 16" />
-        <img src="slike/485176513.jpg" alt="Apartman 17" />
-        <img src="slike/559307786.jpg" alt="Apartman 18" />
-        <img src="slike/485176658.jpg" alt="Apartman 19" />
-        <img src="slike/485176606.jpg" alt="Apartman 20" />
-        <img src="slike/258943656.jpg" alt="Apartman 21" />
-        <img src="slike/485176743.jpg" alt="Apartman 22" />
-        <img src="slike/366524119.jpg" alt="Apartman 23" />
-        <img src="slike/559295126.jpg" alt="Apartman 24" />
-        <img src="slike/559291066.jpg" alt="Apartman 25" />
-        <img src="slike/559290617.jpg" alt="Apartman 26" />
-        <img src="slike/559291720.jpg" alt="Apartman 27" />
-        <img src="slike/559355768.jpg" alt="Apartman 28" />
-        <img src="slike/465579644.jpg" alt="Apartman 29" />
-        <img src="slike/465579760.jpg" alt="Apartman 30" />
-        <img src="slike/258947100.jpg" alt="Apartman 31" />
-        <img src="slike/258942281.jpg" alt="Apartman 32" />
-        <img src="slike/258947015.jpg" alt="Apartman 33" />
-        <img src="slike/211572704.jpg" alt="Apartman 34" />
-        <img src="slike/258944320.jpg" alt="Apartman 35" />
-        <img src="slike/258943487.jpg" alt="Apartman 36" />
-        <img src="slike/258943750.jpg" alt="Apartman 37" />
-        <img src="slike/258944019.jpg" alt="Apartman 38" />
-        <img src="slike/104582046.jpg" alt="Apartman 39" />
-        <img src="slike/87152111.jpg" alt="Apartman 40" />
-        <img src="slike/104582078.jpg" alt="Apartman 41" />
-        <img src="slike/87152731.jpg" alt="Apartman 42" />
-        <img src="slike/559296045.jpg" alt="Apartman 43" />
-        <img src="slike/559294067.jpg" alt="Apartman 44" />
-        <img src="slike/559299250.jpg" alt="Apartman 45" />
-        <img src="slike/559295602.jpg" alt="Apartman 46" />
-      </div>
+      <img id="carouselImg" src="slike/559294267.jpg" alt="Apartman" />
       <button class="carousel-btn prev" onclick="event.stopPropagation(); carouselMove(-1)"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="carousel-btn next" onclick="event.stopPropagation(); carouselMove(1)"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="carousel-counter" id="carouselCounter">1 / 46</div>
@@ -749,12 +697,12 @@
 
   /* ── CAROUSEL ── */
   let carouselIndex = 0;
-  const track = document.getElementById('carouselTrack');
+  const carouselImg = document.getElementById('carouselImg');
   const counter = document.getElementById('carouselCounter');
 
   function carouselMove(dir) {
     carouselIndex = (carouselIndex + dir + images.length) % images.length;
-    track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+    carouselImg.src = images[carouselIndex];
     counter.textContent = (carouselIndex + 1) + ' / ' + images.length;
   }
 
